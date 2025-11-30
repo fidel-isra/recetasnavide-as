@@ -1,0 +1,2746 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>500 Recetas Navideñas Premium - Transforma tu Pasión en Negocio</title>
+
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- AOS para animaciones al scroll -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #d10a42;
+            --secondary-color: #0a7fd1;
+            --accent-color: #ffd700;
+            --dark-bg: #0a0a14;
+            --light-bg: #f8f8f8;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --gradient-1: linear-gradient(135deg, #d10a42 0%, #8b0a3d 100%);
+            --gradient-2: linear-gradient(135deg, #0a7fd1 0%, #054a8b 100%);
+            --gradient-3: linear-gradient(135deg, #ffd700 0%, #ffb700 100%);
+            --neon-glow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor, 0 0 40px currentColor;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Canvas para efectos 3D */
+        #snow-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Navegación */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 0;
+            background: rgba(10, 10, 20, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 10px 0;
+            background: rgba(10, 10, 20, 0.95);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 100px 20px 50px;
+            background: radial-gradient(ellipse at center, rgba(209, 10, 66, 0.2) 0%, rgba(10, 10, 20, 0.8) 70%);
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-text {
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: textGlow 3s infinite alternate;
+        }
+
+        @keyframes textGlow {
+            0% {
+                filter: drop-shadow(0 0 5px var(--primary-color));
+            }
+
+            50% {
+                filter: drop-shadow(0 0 10px var(--secondary-color));
+            }
+
+            100% {
+                filter: drop-shadow(0 0 15px var(--accent-color));
+            }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            margin-bottom: 30px;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: white;
+            box-shadow: 0 5px 15px rgba(209, 10, 66, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(209, 10, 66, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .hero-image {
+            position: relative;
+            z-index: 2;
+            perspective: 1000px;
+        }
+
+        .hero-image-inner {
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-image:hover .hero-image-inner {
+            transform: rotateY(5deg) rotateX(-5deg);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .price-badge {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            background: var(--gradient-3);
+            color: var(--text-dark);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+            z-index: 3;
+            animation: float 3s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Temporizadores de cuenta regresiva */
+        .countdown-section {
+            padding: 50px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(10, 127, 209, 0.1) 0%, rgba(209, 10, 66, 0.1) 100%);
+        }
+
+        .countdown-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--text-light);
+        }
+
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .countdown {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            min-width: 120px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .countdown:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .countdown h3 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .countdown .time {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Sección de Beneficios */
+        .benefits {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, rgba(10, 10, 20, 0.9) 0%, rgba(10, 127, 209, 0.2) 100%);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-1);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover .benefit-icon {
+            transform: scale(1.1);
+        }
+
+        .benefit-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .benefit-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        /* Sección de Recetas */
+        .recipes {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, rgba(209, 10, 66, 0.2) 0%, rgba(10, 10, 20, 0.9) 100%);
+        }
+
+        .recipe-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .recipe-tab {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .recipe-tab.active {
+            background: var(--gradient-1);
+            border-color: transparent;
+        }
+
+        .recipe-tab:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .recipe-tab.active:hover {
+            background: var(--gradient-1);
+        }
+
+        .recipe-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .recipe-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .recipe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .recipe-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .recipe-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .recipe-image img {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .recipe-card:hover .recipe-image img {
+            transform: scale(1.1);
+        }
+
+        .recipe-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--gradient-1);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .recipe-info {
+            padding: 20px;
+        }
+
+        .recipe-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+
+        .recipe-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .recipe-meta {
+            display: flex;
+            justify-content: space-between;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.8rem;
+        }
+
+        /* Sección de Testimonios */
+        .testimonials {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, rgba(10, 127, 209, 0.2) 0%, rgba(209, 10, 66, 0.2) 100%);
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            position: relative;
+        }
+
+        .testimonial-quote {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            margin-bottom: 5px;
+            color: var(--text-light);
+        }
+
+        .author-info p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .testimonial-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Sección de Oferta */
+        .offer {
+            padding: 100px 20px;
+            background: radial-gradient(ellipse at center, rgba(255, 215, 0, 0.2) 0%, rgba(10, 10, 20, 0.9) 70%);
+            text-align: center;
+        }
+
+        .offer-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .offer-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .offer-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .price-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .old-price {
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: line-through;
+        }
+
+        .new-price {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .offer-features {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .offer-feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-light);
+        }
+
+        .offer-feature i {
+            color: var(--accent-color);
+        }
+
+        /* Sección de Bonos */
+        .bonuses {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, rgba(10, 10, 20, 0.9) 0%, rgba(209, 10, 66, 0.2) 100%);
+        }
+
+        .bonuses-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .bonus-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bonus-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-3);
+        }
+
+        .bonus-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .bonus-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            transition: transform 0.3s ease;
+        }
+
+        .bonus-card:hover .bonus-icon {
+            transform: scale(1.1);
+        }
+
+        .bonus-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .bonus-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .bonus-value {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        /* Sección de Preguntas Frecuentes */
+        .faq {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, rgba(209, 10, 66, 0.2) 0%, rgba(10, 127, 209, 0.2) 100%);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            font-size: 1.2rem;
+            color: var(--text-light);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 500px;
+        }
+
+        /* Sección de Garantía */
+        .guarantee {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, rgba(10, 127, 209, 0.2) 0%, rgba(10, 10, 20, 0.9) 70%);
+        }
+
+        .guarantee-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .guarantee-image {
+            position: relative;
+        }
+
+        .guarantee-image img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            transition: transform 0.5s ease;
+        }
+
+        .guarantee-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .guarantee-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .guarantee-content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .guarantee-features {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .guarantee-feature {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+        }
+
+        .guarantee-feature i {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+        }
+
+        /* Sección de E-Book Gratuito */
+        .ebook {
+            padding: 100px 20px;
+            background: radial-gradient(ellipse at center, rgba(10, 127, 209, 0.2) 0%, rgba(10, 10, 20, 0.9) 70%);
+        }
+
+        .ebook-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .ebook-image {
+            position: relative;
+        }
+
+        .ebook-image img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            transition: transform 0.5s ease;
+        }
+
+        .ebook-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .ebook-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .ebook-content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .ebook-features {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .ebook-feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .ebook-feature i {
+            color: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            padding: 50px 20px;
+            background: rgba(10, 10, 20, 0.9);
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .social-links a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--text-light);
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Chatbot */
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            height: 450px;
+            background: rgba(10, 10, 20, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            transform: scale(0);
+            opacity: 0;
+        }
+
+        .chatbot-container.active {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .chatbot-header {
+            padding: 15px;
+            background: var(--gradient-1);
+            border-radius: 15px 15px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chatbot-header h3 {
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .chatbot-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            line-height: 1.4;
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background: var(--gradient-2);
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+
+        .bot-message {
+            align-self: flex-start;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-bottom-left-radius: 5px;
+        }
+
+        .chatbot-input {
+            display: flex;
+            padding: 15px;
+            gap: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .chatbot-input input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .chatbot-input button {
+            padding: 10px 15px;
+            background: var(--gradient-1);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .chatbot-input button:hover {
+            transform: scale(1.1);
+        }
+
+        .chatbot-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(209, 10, 66, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(209, 10, 66, 0.5);
+        }
+
+        .chatbot-toggle i {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        /* Notificación de descarga */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: -400px;
+            background: rgba(10, 10, 20, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            max-width: 350px;
+            z-index: 1001;
+            transition: right 0.5s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .notification.show {
+            right: 20px;
+        }
+
+        .notification-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .notification-title {
+            font-size: 1.2rem;
+            color: var(--text-light);
+        }
+
+        .notification-close {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .notification-content {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.5;
+        }
+
+        .notification-progress {
+            height: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+
+        .notification-progress-bar {
+            height: 100%;
+            background: var(--gradient-1);
+            width: 0;
+            transition: width 5s linear;
+        }
+
+        /* Mobile Menu Styles */
+        .mobile-menu {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 10, 20, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 999;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .mobile-menu.active {
+            transform: translateY(0);
+        }
+
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .mobile-menu-links li {
+            list-style: none;
+            margin-bottom: 15px;
+        }
+
+        .mobile-menu-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .mobile-menu-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--primary-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .hero-content {
+                max-width: 1000px;
+            }
+
+            .benefits-grid,
+            .recipe-grid,
+            .testimonials-container,
+            .bonuses-container {
+                max-width: 1000px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .ebook-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .guarantee-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .nav-container {
+                padding: 0 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .countdown-container {
+                gap: 10px;
+            }
+
+            .countdown {
+                min-width: 80px;
+                padding: 15px 10px;
+            }
+
+            .countdown .time {
+                font-size: 1.8rem;
+            }
+
+            .price-container {
+                flex-direction: column;
+            }
+
+            .new-price {
+                font-size: 3rem;
+            }
+
+            .chatbot-container {
+                width: 90%;
+                right: 5%;
+                left: 5%;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .recipe-tabs {
+                gap: 5px;
+            }
+
+            .recipe-tab {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+
+            .benefit-card,
+            .bonus-card,
+            .testimonial-card {
+                padding: 20px;
+            }
+
+            .faq-question {
+                font-size: 1.1rem;
+            }
+
+            /* Chatbot adjustments for mobile */
+            .chatbot-toggle {
+                bottom: 70px;
+                width: 50px;
+                height: 50px;
+            }
+
+            .chatbot-toggle i {
+                font-size: 1.3rem;
+            }
+
+            /* CORRECCIÓN: Alineación para elementos de garantía y e-book en móvil */
+            .guarantee-features {
+                align-items: flex-start;
+            }
+
+            .guarantee-feature {
+                align-items: flex-start;
+                text-align: left;
+            }
+
+            .ebook-features {
+                align-items: flex-start;
+            }
+
+            .ebook-feature {
+                align-items: flex-start;
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .offer-title {
+                font-size: 2rem;
+            }
+
+            .new-price {
+                font-size: 2.5rem;
+            }
+
+            .old-price {
+                font-size: 1.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .recipe-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits-grid,
+            .bonuses-container,
+            .testimonials-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .countdown {
+                min-width: 60px;
+                padding: 10px 5px;
+            }
+
+            .countdown h3 {
+                font-size: 0.8rem;
+            }
+
+            .countdown .time {
+                font-size: 1.5rem;
+            }
+
+            /* CORRECCIÓN: Alineación para elementos de oferta en móvil */
+            .offer-features {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .offer-feature {
+                align-items: flex-start;
+                text-align: left;
+            }
+
+            .guarantee-features,
+            .ebook-features {
+                align-items: flex-start;
+            }
+        }
+
+        /* Additional improvements for better responsiveness */
+        @media (max-width: 480px) {
+            .hero {
+                padding: 80px 15px 30px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .section-subtitle {
+                font-size: 1rem;
+            }
+
+            .benefit-title,
+            .bonus-title {
+                font-size: 1.3rem;
+            }
+
+            .benefit-description,
+            .bonus-description {
+                font-size: 0.9rem;
+            }
+
+            .recipe-title {
+                font-size: 1.1rem;
+            }
+
+            .recipe-description {
+                font-size: 0.85rem;
+            }
+
+            .testimonial-quote {
+                font-size: 1rem;
+            }
+
+            .faq-question {
+                font-size: 1rem;
+            }
+
+            .faq-answer {
+                font-size: 0.9rem;
+            }
+
+            .offer-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .new-price {
+                font-size: 2.2rem;
+            }
+
+            .old-price {
+                font-size: 1.3rem;
+            }
+
+            /* Chatbot adjustments for very small screens */
+            .chatbot-toggle {
+                bottom: 80px;
+                width: 45px;
+                height: 45px;
+            }
+
+            .chatbot-toggle i {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Canvas para nieve -->
+    <canvas id="snow-canvas"></canvas>
+
+    <!-- Navegación -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-cookie-bite"></i>
+                <span>500 Recetas Navideñas</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#beneficios">Beneficios</a></li>
+                <li><a href="#recipes">Recetas</a></li>
+                <li><a href="#testimonials">Testimonios</a></li>
+                <li><a href="#offer">Oferta</a></li>
+                <li><a href="#guarantee">Garantía</a></li>
+                <li><a href="#ebook">E-Book Gratis</a></li>
+            </ul>
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <ul class="mobile-menu-links">
+            <li><a href="#beneficios">Beneficios</a></li>
+            <li><a href="#recipes">Recetas</a></li>
+            <li><a href="#testimonials">Testimonios</a></li>
+            <li><a href="#offer">Oferta</a></li>
+            <li><a href="#guarantee">Garantía</a></li>
+            <li><a href="#ebook">E-Book Gratis</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">Transforma tu Pasión en un Negocio Rentable</h1>
+                <p class="hero-subtitle">Descubre cómo ganar dinero desde casa preparando los postres y dulces navideños
+                    más deliciosos con nuestro recetario exclusivo de 500 recetas probadas.</p>
+                <div class="hero-buttons">
+                    <a href="https://go.hotmart.com/Q103131949J?ap=9aa2" class="btn btn-primary" target="_blank">COMPRAR
+                        AHORA</a>
+                    <a href="#ebook" class="btn btn-secondary" id="download-free-ebook">DESCARGAR MUESTRA GRATIS</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-image-inner">
+                    <img src="images/navidad3.jpg" alt="500 Recetas Navideñas">
+                    <div class="price-badge">
+                        <span>61% DE DESCUENTO</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Temporizadores de cuenta regresiva -->
+    <section class="countdown-section">
+        <h2 class="countdown-title">¡Oferta por Tiempo Limitado!</h2>
+        <div class="countdown-container">
+            <div class="countdown">
+                <h3>DÍAS</h3>
+                <div class="time" id="days1">00</div>
+            </div>
+            <div class="countdown">
+                <h3>HORAS</h3>
+                <div class="time" id="hours1">00</div>
+            </div>
+            <div class="countdown">
+                <h3>MINUTOS</h3>
+                <div class="time" id="minutes1">10</div>
+            </div>
+            <div class="countdown">
+                <h3>SEGUNDOS</h3>
+                <div class="time" id="seconds1">60</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Beneficios -->
+    <section class="benefits" id="beneficios">
+        <h2 class="section-title">Beneficios Exclusivos</h2>
+        <p class="section-subtitle">Descubre todas las ventajas de nuestro recetario premium</p>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h3 class="benefit-title">Gana dinero desde casa</h3>
+                <p class="benefit-description">Emprende tu propio negocio de repostería y genera ingresos durante la
+                    temporada navideña sin salir de casa.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3 class="benefit-title">Aprende fácilmente</h3>
+                <p class="benefit-description">Recetas explicadas paso a paso, perfectas tanto para principiantes como
+                    para expertas en repostería.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-cookie-bite"></i>
+                </div>
+                <h3 class="benefit-title">Variedad de productos</h3>
+                <p class="benefit-description">Ofrece a tus clientes desde galletas hasta pasteles navideños únicos que
+                    destacarán en el mercado.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3 class="benefit-title">Flexibilidad de horario</h3>
+                <p class="benefit-description">Trabaja a tu ritmo y desde la comodidad de tu hogar, conciliando tu vida
+                    personal con tu emprendimiento.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h3 class="benefit-title">Recetas exclusivas</h3>
+                <p class="benefit-description">Crea postres irresistibles con nuestras recetas exclusivas que te
+                    diferenciarán del resto.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-download"></i>
+                </div>
+                <h3 class="benefit-title">Acceso inmediato</h3>
+                <p class="benefit-description">Descarga instantánea y empieza a cocinar hoy mismo. Acceso de por vida a
+                    todas las recetas y actualizaciones.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Segundo temporizador de cuenta regresiva -->
+    <section class="countdown-section">
+        <h2 class="countdown-title">¡La oferta termina pronto!</h2>
+        <div class="countdown-container">
+            <div class="countdown">
+                <h3>MES</h3>
+                <div class="time" id="months2">00</div>
+            </div>
+            <div class="countdown">
+                <h3>DÍAS</h3>
+                <div class="time" id="days2">00</div>
+            </div>
+            <div class="countdown">
+                <h3>HORAS</h3>
+                <div class="time" id="hours2">00</div>
+            </div>
+            <div class="countdown">
+                <h3>MINUTOS</h3>
+                <div class="time" id="minutes2">10</div>
+            </div>
+            <div class="countdown">
+                <h3>SEGUNDOS</h3>
+                <div class="time" id="seconds2">60</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Recetas -->
+    <section class="recipes" id="recipes">
+        <h2 class="section-title">Nuestras Recetas Exclusivas</h2>
+        <p class="section-subtitle">Explora nuestra variedad de deliciosas recetas navideñas</p>
+        <div class="recipe-tabs">
+            <div class="recipe-tab active" data-category="galletas">Galletas</div>
+            <div class="recipe-tab" data-category="pasteles">Pasteles</div>
+            <div class="recipe-tab" data-category="chocolate">Chocolate</div>
+            <div class="recipe-tab" data-category="panes">Panes</div>
+            <div class="recipe-tab" data-category="bebidas">Bebidas</div>
+        </div>
+        <div class="recipe-content active" id="galletas">
+            <div class="recipe-grid">
+                <div class="recipe-card">
+                    <div class="recipe-image">
+                        <img src="images/galleta1.jpg" alt="Galletas de Jengibre">
+                        <div class="recipe-badge">Popular</div>
+                    </div>
+                    <div class="recipe-info">
+                        <h3 class="recipe-title">Galletas de Jengibre con Decoración Real</h3>
+                        <p class="recipe-description">Clásicas galletas de jengibre con un toque especial de glaseado
+                            real perfecto para decorar.</p>
+                        <div class="recipe-meta">
+                            <span><i class="fas fa-clock"></i> 30 min</span>
+                            <span><i class="fas fa-signal"></i> Fácil</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="recipe-card">
+                    <div class="recipe-image">
+                        <img src="images/galleta2.jpg" alt="Estrellas de Canela">
+                        <div class="recipe-badge">Nuevo</div>
+                    </div>
+                    <div class="recipe-info">
+                        <h3 class="recipe-title">Estrellas de Canela y Azúcar</h3>
+                        <p class="recipe-description">Deliciosas estrellas de canela con un toque de azúcar glas que
+                            derretirán tu corazón.</p>
+                        <div class="recipe-meta">
+                            <span><i class="fas fa-clock"></i> 25 min</span>
+                            <span><i class="fas fa-signal"></i> Fácil</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="recipe-card">
+                    <div class="recipe-image">
+                        <img src="images/galleta3.jpg" alt="Alfajores Navideños">
+                    </div>
+                    <div class="recipe-info">
+                        <h3 class="recipe-title">Alfajores Navideños con Dulce de Leche</h3>
+                        <p class="recipe-description">Tradicionales alfajores rellenos de dulce de leche y decorados con
+                            coco rallado.</p>
+                        <div class="recipe-meta">
+                            <span><i class="fas fa-clock"></i> 40 min</span>
+                            <span><i class="fas fa-signal"></i> Medio</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="recipe-card">
+                    <div class="recipe-image">
+                        <img src="images/galleta4.jpg" alt="Galletas de Chocolate">
+                    </div>
+                    <div class="recipe-info">
+                        <h3 class="recipe-title">Galletas de Chocolate con Chips de Menta</h3>
+                        <p class="recipe-description">La combinación perfecta de chocolate y menta en unas galletas
+                            crujientes y deliciosas.</p>
+                        <div class="recipe-meta">
+                            <span><i class="fas fa-clock"></i> 35 min</span>
+                            <span><i class="fas fa-signal"></i> Fácil</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="recipe-content" id="pasteles">
+            <div class="recipe-grid">
+                <div class="recipe-card">
+                    <div class="recipe-image">
+                        <img src="images/pastel1.jpg" alt="Pastel de Frutas">
+                        <div class="recipe-badge">Popular</div>
+                    </div>
+                    <div class="recipe-info">
+                        <h3 class="recipe-title">Pastel de Frutas Clásico Navideño</h3>
+                        <p class="recipe-description">Un clásico navideño con frutas secas, especias y un toque de
+                            brandy que lo hace especial.</p>
+                        <div class="recipe-meta">
+                            <span><i class="fas fa-clock"></i> 90 min</span>
+                            <span><i class="fas fa-signal"></i> Difícil</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="recipe-card">
+                    <div class="recipe-image">
+                        <img src="images/pastel2.jpg" alt="Tarta de Manzana">
+                    </div>
+                    <div class="recipe-info">
+                        <h3 class="recipe-title">Tarta de Manzana y Caramelo</h3>
+                        <p class="recipe-description">Deliciosa tarta de manzana con un toque de caramelo salado que
+                            sorprenderá a todos.</p>
+                        <div class="recipe-meta">
+                            <span><i class="fas fa-clock"></i> 75 min</span>
+                            <span><i class="fas fa-signal"></i> Medio</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="recipe-card">
+                    <div class="recipe-image">
+                        <img src="images/pastel3.jpg" alt="Pastel de Chocolate">
+                        <div class="recipe-badge">Nuevo</div>
+                    </div>
+                    <div class="recipe-info">
+                        <h3 class="recipe-title">Pastel de Chocolate y Nueces</h3>
+                        <p class="recipe-description">Exquisito pastel de chocolate con nueces y glaseado de crema de
+                            mantequilla.</p>
+                        <div class="recipe-meta">
+                            <span><i class="fas fa-clock"></i> 60 min</span>
+                            <span><i class="fas fa-signal"></i> Medio</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="recipe-card">
+                    <div class="recipe-image">
+                        <img src="images/pastel4.jpg" alt="Tarta de Queso">
+                    </div>
+                    <div class="recipe-info">
+                        <h3 class="recipe-title">Tarta de Queso con Fresas</h3>
+                        <p class="recipe-description">Cremosa tarta de queso con fresas frescas y adorno de chocolate.
+                        </p>
+                        <div class="recipe-meta">
+                            <span><i class="fas fa-clock"></i> 80 min</span>
+                            <span><i class="fas fa-signal"></i> Medio</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="recipe-content" id="chocolate">
+            <div class="recipe-grid">
+                <div class="recipe-card">
+                    <div class="recipe-image">
+                        <img src="images/choco1.jpg" alt="Trufas de Chocolate">
+                        <div class="recipe-badge">Popular</div>
+                    </div>
+                    <div class="recipe-info">
+                        <h3 class="recipe-title">Trufas de Chocolate y Frambuesa</h3>
+                        <p class="recipe-description">Deliciosas trufas de chocolate con un centro sorpresa de
+                            frambuesa.</p>
+                        <div class="recipe-meta">
+                            <span><i class="fas fa-clock"></i> 45 min</span>
+                            <span><i class="fas fa-signal"></i> Medio</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="recipe-card">
+                    <div class="recipe-image">
+                        <img src="images/choco2.jpg" alt="Bombones de Avellanas">
+                    </div>
+                    <div class="recipe-info">
+                        <h3 class="recipe-title">Bombones Rellenos de Ganache de Avellanas</h3>
+                        <p class="recipe-description">Exquisitos bombones con un cremoso relleno de ganache de
+                            avellanas.</p>
+                        <div class="recipe-meta">
+                            <span><i class="fas fa-clock"></i> 50 min</span>
+                            <span><i class="fas fa-signal"></i> Medio</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="recipe-card">
+                    <div class="recipe-image">
+                        <img src="images/choco3.jpg" alt="Brownies de Menta">
+                        <div class="recipe-badge">Nuevo</div>
+                    </div>
+                    <div class="recipe-info">
+                        <h3 class="recipe-title">Brownies de Chocolate con Crema de Menta</h3>
+                        <p class="recipe-description">Húmedos brownies de chocolate con una capa de crema de menta.</p>
+                        <div class="recipe-meta">
+                            <span><i class="fas fa-clock"></i> 40 min</span>
+                            <span><i class="fas fa-signal"></i> Fácil</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="recipe-card">
+                    <div class="recipe-image">
+                        <img src="images/choco4.jpg" alt="Fondue de Chocolate">
+                    </div>
+                    <div class="recipe-info">
+                        <h3 class="recipe-title">Fondue de Chocolate con Frutas</h3>
+                        <p class="recipe-description">Clásico fondue de chocolate acompañado de frutas de temporada.</p>
+                        <div class="recipe-meta">
+                            <span><i class="fas fa-clock"></i> 20 min</span>
+                            <span><i class="fas fa-signal"></i> Fácil</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="recipe-content" id="panes">
+            <div class="recipe-grid">
+                <div class="recipe-card">
+                    <div class="recipe-image">
+                        <img src="images/pan1.jpg" alt="Pan de Calabaza">
+                        <div class="recipe-badge">Popular</div>
+                    </div>
+                    <div class="recipe-info">
+                        <h3 class="recipe-title">Pan de Calabaza con Nueces y Pasas</h3>
+                        <p class="recipe-description">Esponjoso pan de calabaza con nueces crujientes y pasas dulces.
+                        </p>
+                        <div class="recipe-meta">
+                            <span><i class="fas fa-clock"></i> 90 min</span>
+                            <span><i class="fas fa-signal"></i> Medio</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="recipe-card">
+                    <div class="recipe-image">
+                        <img src="images/pan2.jpg" alt="Pan de Jengibre">
+                    </div>
+                    <div class="recipe-info">
+                        <h3 class="recipe-title">Pan de Jengibre y Miel</h3>
+                        <p class="recipe-description">Aromático pan de jengibre con un toque dulce de miel.</p>
+                        <div class="recipe-meta">
+                            <span><i class="fas fa-clock"></i> 80 min</span>
+                            <span><i class="fas fa-signal"></i> Medio</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="recipe-card">
+                    <div class="recipe-image">
+                        <img src="images/pan3.jpg" alt="Panettone">
+                        <div class="recipe-badge">Clásico</div>
+                    </div>
+                    <div class="recipe-info">
+                        <h3 class="recipe-title">Panettone Tradicional con Frutas Confitadas</h3>
+                        <p class="recipe-description">El panettone italiano clásico con frutas confitadas y un toque de
+                            licor.</p>
+                        <div class="recipe-meta">
+                            <span><i class="fas fa-clock"></i> 120 min</span>
+                            <span><i class="fas fa-signal"></i> Difícil</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="recipe-card">
+                    <div class="recipe-image">
+                        <img src="images/pan4.jpg" alt="Bollos de Canela">
+                    </div>
+                    <div class="recipe-info">
+                        <h3 class="recipe-title">Bollos de Canela y Nuez Moscada</h3>
+                        <p class="recipe-description">Suaves bollos con un relleno de canela y nuez moscada.</p>
+                        <div class="recipe-meta">
+                            <span><i class="fas fa-clock"></i> 70 min</span>
+                            <span><i class="fas fa-signal"></i> Medio</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="recipe-content" id="bebidas">
+            <div class="recipe-grid">
+                <div class="recipe-card">
+                    <div class="recipe-image">
+                        <img src="images/bebida1.jpg" alt="Chocolate Caliente">
+                        <div class="recipe-badge">Popular</div>
+                    </div>
+                    <div class="recipe-info">
+                        <h3 class="recipe-title">Chocolate Caliente Especiado</h3>
+                        <p class="recipe-description">Crema de chocolate caliente con un toque de canela y nuez moscada.
+                        </p>
+                        <div class="recipe-meta">
+                            <span><i class="fas fa-clock"></i> 15 min</span>
+                            <span><i class="fas fa-signal"></i> Fácil</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="recipe-card">
+                    <div class="recipe-image">
+                        <img src="images/bebida2.jpg" alt="Ponche Navideño">
+                    </div>
+                    <div class="recipe-info">
+                        <h3 class="recipe-title">Ponche Navideño con Especias</h3>
+                        <p class="recipe-description">Tradicional ponche navideño con frutas y especias aromáticas.</p>
+                        <div class="recipe-meta">
+                            <span><i class="fas fa-clock"></i> 25 min</span>
+                            <span><i class="fas fa-signal"></i> Fácil</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="recipe-card">
+                    <div class="recipe-image">
+                        <img src="images/bebida3.jpg" alt="Café Mocha">
+                        <div class="recipe-badge">Nuevo</div>
+                    </div>
+                    <div class="recipe-info">
+                        <h3 class="recipe-title">Café Mocha con Crema de Caramelo</h3>
+                        <p class="recipe-description">Delicioso café mocha con una capa de crema de caramelo.</p>
+                        <div class="recipe-meta">
+                            <span><i class="fas fa-clock"></i> 10 min</span>
+                            <span><i class="fas fa-signal"></i> Fácil</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="recipe-card">
+                    <div class="recipe-image">
+                        <img src="images/bebida4.jpg" alt="Té de Manzana">
+                    </div>
+                    <div class="recipe-info">
+                        <h3 class="recipe-title">Té de Manzana y Canela</h3>
+                        <p class="recipe-description">Reconfortante té de manzana con un toque de canela y clavo de
+                            olor.</p>
+                        <div class="recipe-meta">
+                            <span><i class="fas fa-clock"></i> 20 min</span>
+                            <span><i class="fas fa-signal"></i> Fácil</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Testimonios -->
+    <section class="testimonials" id="testimonials">
+        <h2 class="section-title">Historias de Éxito</h2>
+        <p class="section-subtitle">Descubre cómo nuestras recetas han transformado vidas</p>
+        <div class="testimonials-container">
+            <div class="testimonial-card">
+                <i class="fas fa-quote-right testimonial-icon"></i>
+                <p class="testimonial-quote">"Gracias a las recetas de este libro, pude empezar mi propio negocio de
+                    repostería navideña. En solo dos meses, recuperé mi inversión y estoy ganando más que en mi trabajo
+                    anterior."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <img src="images/avatar1.jpg" alt="María González">
+                    </div>
+                    <div class="author-info">
+                        <h4>María González</h4>
+                        <p>Emprendedora, México</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <i class="fas fa-quote-right testimonial-icon"></i>
+                <p class="testimonial-quote">"Nunca pensé que podría ganar dinero haciendo lo que amo. Las recetas son
+                    fáciles de seguir y los resultados son profesionales. Mis clientes siempre vuelven por más."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <img src="images/avatar2.jpg" alt="Laura Martínez">
+                    </div>
+                    <div class="author-info">
+                        <h4>Laura Martínez</h4>
+                        <p>Pastelera, España</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <i class="fas fa-quote-right testimonial-icon"></i>
+                <p class="testimonial-quote">"Este recetario cambió mi vida. No solo aprendí a hacer postres increíbles,
+                    sino que también obtuve consejos valiosos sobre cómo poner precios y vender mis productos. ¡100%
+                    recomendado!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <img src="images/avatar3.jpg" alt="Ana Silva">
+                    </div>
+                    <div class="author-info">
+                        <h4>Ana Silva</h4>
+                        <p>Emprendedora, Colombia</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Garantía -->
+    <section class="guarantee" id="guarantee">
+        <div class="guarantee-container">
+            <div class="guarantee-image">
+                <img src="images/garantia.jpg" alt="Garantía de 7 Días">
+            </div>
+            <div class="guarantee-content">
+                <h2>7 DÍAS DE GARANTÍA</h2>
+                <p>Estamos tan seguros de que amarás "500 Recetas Navideñas" que ofrecemos una garantía de devolución
+                    del dinero durante los primeros 7 días. Si por alguna razón no estás satisfecho/a, contáctanos y te
+                    reembolsaremos el 100% del costo sin preguntas.</p>
+                <div class="guarantee-features">
+                    <div class="guarantee-feature">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Garantía total de reembolso</span>
+                    </div>
+                    <div class="guarantee-feature">
+                        <i class="fas fa-clock"></i>
+                        <span>7 días para probar sin riesgo</span>
+                    </div>
+                    <div class="guarantee-feature">
+                        <i class="fas fa-headset"></i>
+                        <span>Soporte dedicado y atención al cliente</span>
+                    </div>
+                </div>
+                <a href="https://go.hotmart.com/Q103131949J?ap=9aa2" class="btn btn-primary" target="_blank">COMPRAR CON
+                    GARANTÍA</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Oferta -->
+    <section class="offer" id="offer">
+        <div class="offer-container">
+            <h2 class="offer-title">Oferta Especial por Tiempo Limitado</h2>
+            <p class="offer-subtitle">Aprovecha esta oportunidad única</p>
+            <div class="price-container">
+                <span class="old-price">Antes: $49</span>
+                <span class="new-price">Ahora: $19</span>
+            </div>
+            <div class="offer-features">
+                <div class="offer-feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>500 recetas exclusivas</span>
+                </div>
+                <div class="offer-feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Acceso de por vida</span>
+                </div>
+                <div class="offer-feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>4 bonos gratuitos</span>
+                </div>
+            </div>
+            <a href="https://go.hotmart.com/Q103131949J?ap=9aa2" class="btn btn-primary" target="_blank">COMPRAR
+                AHORA</a>
+        </div>
+    </section>
+
+    <!-- Tercer temporizador de cuenta regresiva -->
+    <section class="countdown-section">
+        <h2 class="countdown-title">¡No te quedes sin tu descuento!</h2>
+        <div class="countdown-container">
+            <div class="countdown">
+                <h3>DÍAS</h3>
+                <div class="time" id="days3">00</div>
+            </div>
+            <div class="countdown">
+                <h3>HORAS</h3>
+                <div class="time" id="hours3">00</div>
+            </div>
+            <div class="countdown">
+                <h3>MINUTOS</h3>
+                <div class="time" id="minutes3">10</div>
+            </div>
+            <div class="countdown">
+                <h3>SEGUNDOS</h3>
+                <div class="time" id="seconds3">60</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Bonos -->
+    <section class="bonuses">
+        <h2 class="section-title">Bonos Exclusivos</h2>
+        <p class="section-subtitle">Recibe estos regalos especiales al comprar hoy</p>
+        <div class="bonuses-container">
+            <div class="bonus-card">
+                <div class="bonus-icon">
+                    <i class="fas fa-puzzle-piece"></i>
+                </div>
+                <h3 class="bonus-title">Actividades Navideñas para Niños</h3>
+                <p class="bonus-description">Mantén a los pequeños ocupados y felices con actividades divertidas que
+                    impulsan la creatividad en familia.</p>
+                <div class="bonus-value">Valorado en $19</div>
+            </div>
+            <div class="bonus-card">
+                <div class="bonus-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <h3 class="bonus-title">Recetas Adicionales Exclusivas</h3>
+                <p class="bonus-description">Añade más variedad a tu menú navideño con estas recetas exclusivas que no
+                    encontrarás en ningún otro lugar.</p>
+                <div class="bonus-value">Valorado en $22</div>
+            </div>
+            <div class="bonus-card">
+                <div class="bonus-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <h3 class="bonus-title">Guía de Planificación de Eventos</h3>
+                <p class="bonus-description">Convierte tus reuniones en eventos inolvidables con consejos de
+                    planificación y decoración.</p>
+                <div class="bonus-value">Valorado en $15</div>
+            </div>
+            <div class="bonus-card">
+                <div class="bonus-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3 class="bonus-title">Acceso al Grupo Exclusivo</h3>
+                <p class="bonus-description">Recibe apoyo directo de especialistas en nuestro grupo exclusivo de
+                    emprendedores de repostería.</p>
+                <div class="bonus-value">Valorado en $30</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Preguntas Frecuentes -->
+    <section class="faq" id="faq">
+        <h2 class="section-title">Preguntas Frecuentes</h2>
+        <p class="section-subtitle">Resolvemos tus dudas</p>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿Cuáles son las ventajas de "500 Recetas Navideñas"?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    "500 Recetas Navideñas" no es solo un libro de recetas, es una experiencia completa de repostería
+                    navideña. Descubrirás una amplia variedad de recetas deliciosas, consejos profesionales y trucos de
+                    decoración creativa que harán que tus celebraciones sean inolvidables. Además, incluye guías para
+                    emprender tu propio negocio desde casa.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿Qué incluye la oferta de descuento?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    La oferta especial te permite obtener "500 Recetas Navideñas" a tan solo $19 en lugar de $49 por
+                    tiempo limitado. Además, al comprar ahora recibirás 4 bonos gratuitos valorados en más de $80:
+                    actividades para niños, recetas adicionales, guía de planificación de eventos y acceso a nuestro
+                    grupo exclusivo.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿Cómo funciona la garantía de 7 días?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Estamos tan seguros de que amarás "500 Recetas Navideñas" que ofrecemos una garantía de devolución
+                    del dinero durante los primeros 7 días. Si por alguna razón no estás satisfecho/a, contáctanos y te
+                    reembolsaremos el 100% del costo sin preguntas.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿Cómo accedo a mi copia de "500 Recetas Navideñas"?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Después de completar tu compra, recibirás instrucciones detalladas sobre cómo acceder a tu libro. El
+                    acceso es de por vida, lo que significa que podrás disfrutar de las deliciosas recetas navideñas en
+                    cualquier momento, ¡ahora y en futuras celebraciones! El producto es digital, por lo que no tendrás
+                    que esperar por envíos.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿Puedo regalar "500 Recetas Navideñas" a alguien más?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    ¡Por supuesto! "500 Recetas Navideñas" es un regalo perfecto para amigos y seres queridos.
+                    Simplemente completa la compra y sigue las instrucciones para regalarlo a quien desees. Es un regalo
+                    ideal para cualquiera que ame la repostería o quiera empezar su propio negocio.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿El pago es seguro?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Totalmente, nuestros programas se encuentran respaldados en tecnología, soporte y seguridad por
+                    HOTMART, la compañía de productos digitales más grande de habla hispana. Ellos aseguran tu pago y tu
+                    dinero por 7 días, en caso de querer un reembolso. Tu información está completamente protegida.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de E-Book Gratuito -->
+    <section class="ebook" id="ebook">
+        <div class="ebook-container">
+            <div class="ebook-image">
+                <img src="images/ebook.jpg" alt="E-Book Gratuito">
+            </div>
+            <div class="ebook-content">
+                <h2>Descarga tu E-Book Gratuito</h2>
+                <p>Obtén un adelanto de nuestro recetario con estas deliciosas recetas navideñas que puedes preparar hoy
+                    mismo. Haz clic en el botón para descargar tu e-book con 5 recetas exclusivas.</p>
+                <div class="ebook-features">
+                    <div class="ebook-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>5 recetas navideñas exclusivas</span>
+                    </div>
+                    <div class="ebook-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Acceso inmediato</span>
+                    </div>
+                    <div class="ebook-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Formato PDF fácil de usar</span>
+                    </div>
+                    <div class="ebook-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>100% gratis</span>
+                    </div>
+                </div>
+                <a href="pdf/Mini-Ebook-5-Recetas-Navidenas-Premium.pdf" class="btn btn-primary" id="download-ebook"
+                    download>DESCARGAR E-BOOK GRATIS</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Sobre Nosotros</h3>
+                <p>Somos apasionados de la repostería navideña y queremos ayudarte a transformar tu pasión en un negocio
+                    rentable.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="#beneficios">Beneficios</a></li>
+                    <li><a href="#recipes">Recetas</a></li>
+                    <li><a href="#testimonials">Testimonios</a></li>
+                    <li><a href="#offer">Oferta</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Soporte</h3>
+                <ul>
+                    <li><a href="#faq">Preguntas Frecuentes</a></li>
+                    <li><a href="#">Contacto</a></li>
+                    <li><a href="#">Política de Privacidad</a></li>
+                    <li><a href="#">Términos y Condiciones</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Síguenos</h3>
+                <div class="social-links">
+                    <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 500 Recetas Navideñas - Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <!-- Chatbot -->
+    <div class="chatbot-toggle" id="chatbot-toggle">
+        <i class="fas fa-robot"></i>
+    </div>
+    <div class="chatbot-container" id="chatbot-container">
+        <div class="chatbot-header">
+            <h3>Asistente Virtual</h3>
+            <button class="chatbot-close" id="chatbot-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages">
+            <div class="message bot-message">
+                ¡Hola! Soy tu asistente virtual para 500 Recetas Navideñas. Estoy aquí para responder todas tus
+                preguntas sobre nuestro producto. ¿En qué puedo ayudarte hoy?
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatbot-input" placeholder="Escribe tu pregunta...">
+            <button id="chatbot-send">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Notificación de descarga -->
+    <div class="notification" id="notification">
+        <div class="notification-header">
+            <h3 class="notification-title">Descarga en Progreso</h3>
+            <button class="notification-close" id="notification-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="notification-content">
+            Tu e-book gratuito con 5 recetas navideñas se está descargando. Revisa tu carpeta de descargas en unos
+            segundos.
+        </div>
+        <div class="notification-progress">
+            <div class="notification-progress-bar" id="notification-progress-bar"></div>
+        </div>
+    </div>
+
+    <!-- Scripts (AOS, y otros scripts personalizados) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Inicializar AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // --- Lógica para el Chatbot ---
+        const chatbotToggle = document.getElementById('chatbot-toggle');
+        const chatbotContainer = document.getElementById('chatbot-container');
+        const chatbotClose = document.getElementById('chatbot-close');
+        const chatbotInput = document.getElementById('chatbot-input');
+        const chatbotSend = document.getElementById('chatbot-send');
+        const chatbotMessages = document.getElementById('chatbot-messages');
+
+        chatbotToggle.addEventListener('click', () => {
+            chatbotContainer.classList.add('active');
+        });
+
+        chatbotClose.addEventListener('click', () => {
+            chatbotContainer.classList.remove('active');
+        });
+
+        // Base de conocimiento del chatbot con respuestas cortas y concisas
+        const knowledgeBase = {
+            "beneficios": {
+                "title": "Beneficios",
+                "content": "Gana dinero desde casa con tu propio negocio de repostería navideña. Aprende fácilmente con recetas paso a paso. Ofrece variedad de productos desde galletas hasta pasteles únicos. Disfruta de flexibilidad de horario trabajando a tu ritmo. Accede a recetas exclusivas y obtén acceso de por vida."
+            },
+            "recetas": {
+                "title": "Recetas",
+                "content": "Ofrecemos 500 recetas navideñas en 5 categorías: Galletas (Galletas de Jengibre), Pasteles (Pastel de Frutas), Chocolate (Trufas), Panes (Panettone) y Bebidas (Chocolate Caliente). Cada receta incluye tiempo de preparación y nivel de dificultad."
+            },
+            "testimonios": {
+                "title": "Testimonios",
+                "content": "María González recuperó su inversión en 2 meses. Laura Martínez destaca que sus clientes siempre vuelven por más. Ana Silva obtuvo consejos valiosos sobre precios y venta de productos."
+            },
+            "oferta": {
+                "title": "Oferta Especial",
+                "content": "¡75% de descuento! De $49 a solo $19 por tiempo limitado. Incluye 4 bonos gratuitos valorados en más de $80: Actividades para Niños, Recetas Adicionales, Guía de Eventos y Acceso al Grupo Exclusivo."
+            },
+            "garantía": {
+                "title": "Garantía",
+                "content": "Garantía de devolución del dinero durante los primeros 7 días sin preguntas. Contamos con soporte dedicado y atención al cliente para resolver cualquier duda."
+            },
+            "e-book": {
+                "title": "E-Book Gratuito",
+                "content": "Descarga un e-book gratuito con 5 recetas navideñas exclusivas. Acceso inmediato en formato PDF fácil de usar. Es 100% gratis y una excelente muestra de la calidad de nuestro recetario completo."
+            },
+            "comprar": {
+                "title": "Cómo Comprar",
+                "content": "Haz clic en el botón 'COMPRAR AHORA' en cualquier parte de la página. Serás redirigido a una plataforma de pago segura donde podrás completar tu compra. Aceptamos múltiples métodos de pago."
+            },
+            "precio": {
+                "title": "Precio",
+                "content": "Precio regular: $49. Oferta especial: Solo $19 (75% de descuento). Incluye acceso de por vida a las 500 recetas y los 4 bonos exclusivos."
+            },
+            "acceso": {
+                "title": "Acceso",
+                "content": "Después de comprar, recibirás instrucciones por correo electrónico. El producto es digital, sin envíos. Tendrás acceso de por vida a todas las recetas y actualizaciones futuras."
+            },
+            "default": {
+                "title": "Información General",
+                "content": "500 Recetas Navideñas te ayudará a transformar tu pasión en un negocio rentable. Puedes preguntarme sobre beneficios, recetas, testimonios, oferta, garantía o nuestro e-book gratuito."
+            }
+        };
+
+        // Función para procesar el mensaje del usuario
+        const processMessage = (message) => {
+            const lowerMessage = message.toLowerCase();
+            // Buscar palabras clave en el mensaje
+            if (lowerMessage.includes("beneficio") || lowerMessage.includes("ventaja")) {
+                return knowledgeBase.beneficios;
+            } else if (lowerMessage.includes("receta") || lowerMessage.includes("postre") || lowerMessage.includes("comida")) {
+                return knowledgeBase.recetas;
+            } else if (lowerMessage.includes("testimonio") || lowerMessage.includes("opinión") || lowerMessage.includes("experiencia")) {
+                return knowledgeBase.testimonios;
+            } else if (lowerMessage.includes("oferta") || lowerMessage.includes("descuento") || lowerMessage.includes("precio")) {
+                return knowledgeBase.oferta;
+            } else if (lowerMessage.includes("garantía") || lowerMessage.includes("devolución") || lowerMessage.includes("reembolso")) {
+                return knowledgeBase.garantía;
+            } else if (lowerMessage.includes("e-book") || lowerMessage.includes("libro") || lowerMessage.includes("gratis")) {
+                return knowledgeBase.ebook;
+            } else if (lowerMessage.includes("comprar") || lowerMessage.includes("adquirir") || lowerMessage.includes("pagar")) {
+                return knowledgeBase.comprar;
+            } else if (lowerMessage.includes("acceso") || lowerMessage.includes("entrar") || lowerMessage.includes("ingresar")) {
+                return knowledgeBase.acceso;
+            } else {
+                return knowledgeBase.default;
+            }
+        };
+
+        const sendMessage = () => {
+            const messageText = chatbotInput.value.trim();
+            if (messageText === '') return;
+
+            // Añadir mensaje del usuario
+            const userMessage = document.createElement('div');
+            userMessage.classList.add('message', 'user-message');
+            userMessage.textContent = messageText;
+            chatbotMessages.appendChild(userMessage);
+
+            // Limpiar input
+            chatbotInput.value = '';
+
+            // Procesar la respuesta del bot
+            const response = processMessage(messageText);
+
+            // Simular respuesta del bot
+            setTimeout(() => {
+                const botMessage = document.createElement('div');
+                botMessage.classList.add('message', 'bot-message');
+                botMessage.innerHTML = `<strong>${response.title}:</strong><br>${response.content}`;
+                chatbotMessages.appendChild(botMessage);
+                chatbotMessages.scrollTop = chatbotMessages.scrollHeight; // Hacer scroll hacia abajo
+            }, 1000);
+
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight; // Hacer scroll hacia abajo
+        };
+
+        chatbotSend.addEventListener('click', sendMessage);
+        chatbotInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // --- Lógica para las Pestañas de Recetas ---
+        const recipeTabs = document.querySelectorAll('.recipe-tab');
+        const recipeContents = document.querySelectorAll('.recipe-content');
+
+        recipeTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetCategory = tab.getAttribute('data-category');
+                // Desactivar todas las pestañas y contenidos
+                recipeTabs.forEach(t => t.classList.remove('active'));
+                recipeContents.forEach(c => c.classList.remove('active'));
+                // Activar la pestaña y el contenido correspondientes
+                tab.classList.add('active');
+                document.getElementById(targetCategory).classList.add('active');
+            });
+        });
+
+        // --- Lógica para las Preguntas Frecuentes (FAQ) ---
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                // Cerrar todos los items
+                faqItems.forEach(i => i.classList.remove('active'));
+                // Abrir el item clickeado si no estaba activo
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // --- Lógica para la Notificación de Descarga ---
+        const downloadEbookBtn = document.getElementById('download-ebook');
+        const downloadFreeEbookBtn = document.getElementById('download-free-ebook');
+        const notification = document.getElementById('notification');
+        const notificationClose = document.getElementById('notification-close');
+        const notificationProgressBar = document.getElementById('notification-progress-bar');
+
+        const showNotification = () => {
+            notification.classList.add('show');
+            // Reiniciar y animar la barra de progreso
+            notificationProgressBar.style.transition = 'none';
+            notificationProgressBar.style.width = '0%';
+            setTimeout(() => {
+                notificationProgressBar.style.transition = 'width 5s linear';
+                notificationProgressBar.style.width = '100%';
+            }, 100);
+            // Ocultar notificación después de un tiempo
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 6000);
+        };
+
+        if (downloadEbookBtn) {
+            downloadEbookBtn.addEventListener('click', (e) => {
+                // No prevenimos el comportamiento por defecto para permitir la descarga
+                showNotification();
+            });
+        }
+
+        if (downloadFreeEbookBtn) {
+            downloadFreeEbookBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Desplazar a la sección de ebook
+                document.getElementById('ebook').scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+
+        if (notificationClose) {
+            notificationClose.addEventListener('click', () => {
+                notification.classList.remove('show');
+            });
+        }
+
+        // --- Lógica para la Cuenta Regresiva ---
+        // Función para establecer una fecha de finalización
+        const setCountdown = (endTime) => {
+            const now = new Date().getTime();
+            let distance = endTime - now;
+            if (distance < 0) {
+                distance = 0; // Evitar números negativos
+            }
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            return { days, hours, minutes, seconds };
+        };
+
+        // Función para actualizar el DOM
+        const updateCountdown = (ids, endTime) => {
+            const { days, hours, minutes, seconds } = setCountdown(endTime);
+            document.getElementById(ids.days).innerText = String(days).padStart(2, '0');
+            document.getElementById(ids.hours).innerText = String(hours).padStart(2, '0');
+            document.getElementById(ids.minutes).innerText = String(minutes).padStart(2, '0');
+            document.getElementById(ids.seconds).innerText = String(seconds).padStart(2, '0');
+        };
+
+        // Establecer fecha de finalización (ej: 3 días desde ahora)
+        const countdownEndDate = new Date().getTime() + (3 * 24 * 60 * 60 * 1000);
+
+        // Actualizar cada segundo
+        setInterval(() => {
+            updateCountdown({ days: 'days1', hours: 'hours1', minutes: 'minutes1', seconds: 'seconds1' }, countdownEndDate);
+            updateCountdown({ days: 'days2', hours: 'hours2', minutes: 'minutes2', seconds: 'seconds2' }, countdownEndDate);
+            updateCountdown({ days: 'days3', hours: 'hours3', minutes: 'minutes3', seconds: 'seconds3' }, countdownEndDate);
+        }, 1000);
+
+        // --- Lógica para el Navbar al hacer scroll ---
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // --- Lógica para el menú móvil ---
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-links a');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Cerrar el menú al hacer clic en un enlace
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // --- Efecto Canvas (Nieve) ---
+        const snowCanvas = document.getElementById('snow-canvas');
+        const snowCtx = snowCanvas.getContext('2d');
+
+        function resizeCanvas() {
+            snowCanvas.width = window.innerWidth;
+            snowCanvas.height = window.innerHeight;
+        }
+
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // Animación de nieve
+        const snowflakes = [];
+        const maxSnowflakes = 100;
+
+        for (let i = 0; i < maxSnowflakes; i++) {
+            snowflakes.push({
+                x: Math.random() * snowCanvas.width,
+                y: Math.random() * snowCanvas.height,
+                radius: Math.random() * 3 + 1,
+                speed: Math.random() * 1 + 0.5,
+                wind: Math.random() * 0.5 - 0.25
+            });
+        }
+
+        function drawSnowflakes() {
+            snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+            snowCtx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+            snowCtx.beginPath();
+            for (let i = 0; i < maxSnowflakes; i++) {
+                const flake = snowflakes[i];
+                snowCtx.moveTo(flake.x, flake.y);
+                snowCtx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
+            }
+            snowCtx.fill();
+            updateSnowflakes();
+        }
+
+        function updateSnowflakes() {
+            for (let i = 0; i < maxSnowflakes; i++) {
+                const flake = snowflakes[i];
+                flake.y += flake.speed;
+                flake.x += flake.wind;
+                if (flake.y > snowCanvas.height) {
+                    flake.y = -flake.radius;
+                    flake.x = Math.random() * snowCanvas.width;
+                }
+                if (flake.x > snowCanvas.width) {
+                    flake.x = 0;
+                } else if (flake.x < 0) {
+                    flake.x = snowCanvas.width;
+                }
+            }
+        }
+
+        function animateCanvas() {
+            drawSnowflakes();
+            requestAnimationFrame(animateCanvas);
+        }
+
+        animateCanvas();
+    </script>
+</body>
+
+</html>
